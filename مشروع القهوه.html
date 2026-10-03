@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>قهوة المعلّم - أهوة مصرية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="مشروع القهوة.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">قهوة المعلّم</div>
+  <button class="menu-toggle" id="menuToggle" aria-label="القائمة">☰</button>
+  <nav id="nav">
+    <button data-page="home" class="active">الرئيسية</button>
+    <button data-page="menu">المنيو</button>
+    <button data-page="contact">تواصل معنا</button>
+  </nav>
+  <button class="cart-btn" id="openCart">🛒 الطلب (<span id="cartCount">0</span>)</button>
+</header>
+
+<!-- الصفحة 1 -->
+<main>
+<section class="page show" id="home">
+  <div class="hero">
+    <div>
+      <h1>قعدة حلوة<br>وكوباية شاي بنعناع</h1>
+      <p>أهوة مصرية على أصولها: شاي، قهوة، حلويات شرقي، وشيشة هادية. اطلب من هنا وإحنا نجهزلك قبل ما توصل.</p>
+      <button class="btn" data-go="menu">شوف المنيو</button>
+      <button class="btn outline" data-go="contact">احجز ترابيزة</button>
+    </div>
+    <div class="cup" aria-hidden="true">
+      <span class="steam s1"></span><span class="steam s2"></span><span class="steam s3"></span>
+      <div class="body"></div><div class="handle"></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2>مزاجك إيه النهاردة؟</h2>
+    <p>اختار وإحنا نرشحلك.</p>
+    <div class="moods" id="moods"></div>
+    <div class="suggest" id="suggest"><p>اضغط على مزاجك فوق 👆</p></div>
+  </div>
+
+
+  <!-- خدماتنا -->
+  <div class="section">
+    <div class="sec-title reveal">
+      <h2>خدماتنا</h2>
+      <p>مجموعة خدمات بتخلي زيارتك أسهل وأحلى.</p>
+    </div>
+    <div class="grid services reveal" id="services"></div>
+  </div>
+
+  <!-- آراء العملاء -->
+  <div class="section alt">
+    <div class="sec-title reveal">
+      <h2>آراء العملاء</h2>
+      <p>ناس قعدت عندنا وقالت رأيها.</p>
+    </div>
+    <div class="tgrid reveal" id="testimonials"></div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+
+    <form class="rform reveal" id="reviewForm" novalidate>
+      <h3>شاركنا رأيك</h3>
+      <div class="rrow">
+        <div>
+          <label for="rName">الاسم</label>
+          <input id="rName" maxlength="30">
+          <div class="err"></div>
+        </div>
+        <div>
+          <label for="rJob">الوظيفة (اختياري)</label>
+          <input id="rJob" maxlength="25" placeholder="مثلاً: مهندس">
+        </div>
+      </div>
+      <label>تقييمك</label>
+      <div class="starpick" id="starPick" role="radiogroup" aria-label="التقييم"></div>
+      <div class="err" id="starErr"></div>
+      <label for="rText">رأيك</label>
+      <textarea id="rText" rows="3" maxlength="200"></textarea>
+      <div class="err"></div>
+      <button class="btn" type="submit">انشر رأيي</button>
+    </form>
+  </div>
+</section>
+
+<!-- الصفحة 2 -->
+<section class="page" id="menu">
+  <div class="section">
+    <h2>المنيو</h2>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="menuGrid"></div>
+  </div>
+</section>
+
+<!-- الصفحة 3 -->
+<section class="page" id="contact">
+  <div class="section contact">
+    <form id="form" novalidate>
+      <h2>ابعتلنا رسالة</h2>
+      <label for="name">الاسم</label>
+      <input id="name" type="text">
+      <div class="err"></div>
+      <label for="phone">رقم الموبايل</label>
+      <input id="phone" type="tel" placeholder="01xxxxxxxxx">
+      <div class="err"></div>
+      <label for="msg">الرسالة</label>
+      <textarea id="msg" rows="4"></textarea>
+      <div class="err"></div>
+      <button class="btn" type="submit">ابعت</button>
+      <div class="ok" id="ok">وصلتنا رسالتك، هنكلمك قريب 👌</div>
+    </form>
+    <div class="info">
+      <h2>إحنا فين؟</h2>
+      <p>📍 شارع البحر، المحلة الكبرى، الغربية</p>
+      <p>📞 01000000000</p>
+      <div class="hours">
+        <h3>مواعيد الشغل</h3>
+        <p>كل يوم من 8 الصبح لحد 2 بعد نص الليل</p>
+        <p id="openNow"></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 قهوة المعلّم - تصميم تجريبي</footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="الطلب">
+  <div class="drawer-head"><h2>طلبك</h2><button class="close" id="closeCart" aria-label="إغلاق">✕</button></div>
+  <div id="cartItems"></div>
+  <div class="total">الإجمالي: <span id="total">0</span> ج</div>
+  <button class="btn" id="checkout">أكد الطلب</button>
+</aside>
+<div class="svc-modal" id="svcModal"><div class="svc-box" id="svcBox"></div></div>
+<div id="toast"></div>
+
+<script src="مشروع القهوة.js"></script>
+</body>
+</html>

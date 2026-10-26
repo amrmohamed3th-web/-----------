@@ -19,7 +19,7 @@ nav button.active,nav button:hover{background:var(--tile)}
 .menu-toggle{display:none;background:none;border:1px solid #fff5;color:#fff;padding:6px 12px;border-radius:8px;font-size:1.2rem}
 
 /* pages */
-.page{min-height:80vh}
+.page{display:none;min-height:80vh}
 .page.show{display:block;animation:fade .4s}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 

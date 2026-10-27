@@ -106,11 +106,31 @@ function toggleCart(open){
 }
 $('#openCart').onclick = () => toggleCart(true);
 $('#closeCart').onclick = $('#overlay').onclick = () => toggleCart(false);
-$('#checkout').onclick = () => {
+$('#checkout').onclick = async () => {
   if(!Object.keys(cart).length) return toast('الطلب فاضي!');
-  cart = {}; updateCart(); toggleCart(false);
-  toast('تم تأكيد طلبك، جاري التحضير ☕');
+  
+  const orderData = {
+    items: cart,
+    totalPrice: parseFloat($('#total').textContent)
+  };
+
+  try {
+    const res = await fetch('http://localhost:5000/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(orderData)
+    });
+    const data = await res.json();
+    if(res.ok) {
+      cart = {}; updateCart(); toggleCart(false);
+      toast(data.message || 'تم تأكيد طلبك ☕');
+    }
+  } catch (err) {
+    console.error(err);
+    toast('حصل مشكلة أثناء إرسال الطلب للسيرفر!');
+  }
 };
+
 
 // ---------- الفورم ----------
 $('#form').onsubmit = e => {
